@@ -1,0 +1,31 @@
+mutation InsertBookmark($link: String, $name: String, $author_id: uuid) {
+  insert_bookmarks(objects: {name: $name, link: $link, author_id: $author_id}) {
+    returning {
+      id
+    }
+  }
+}
+
+subscription LiveBookmarkList {
+  bookmarks {
+    id
+    link
+    name
+    time
+  }
+}
+
+mutation UpdateBookmark($id: uuid!, $name: String, $link: String) {
+  update_bookmarks_by_pk(pk_columns: {id: $id}, _set: {name: $name, link: $link}) {
+    id
+  }
+}
+
+mutation DeleteBookmark($id: uuid!) {
+  delete_bookmarks_by_pk(id: $id) {
+    name
+  }
+}
+
+
+
