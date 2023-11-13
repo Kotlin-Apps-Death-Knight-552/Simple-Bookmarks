@@ -16,12 +16,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.knightshrestha.bookmarks.viewmodel.BookmarkViewModel
 import com.knightshrestha.bookmarks.viewmodel.MainViewModel
 
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
 
-    val state by viewModel.state.collectAsState()
+    val someViewModel = hiltViewModel<BookmarkViewModel>()
+    val state by someViewModel.state.collectAsState()
+
 
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
         Box(
@@ -34,20 +38,18 @@ fun MainScreen(viewModel: MainViewModel) {
                     .fillMaxSize()
                     .padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(10) {
+
+
+                items(state.bookmarks) {bookmark ->
                     OutlinedCard(
                         modifier = Modifier.fillMaxWidth(),
                         shape = MaterialTheme.shapes.small
                     ) {
                         Box(modifier = Modifier.padding(8.dp)) {
-                            Text(text = "Item Number $it")
+                            Text(text = bookmark.name)
 
                         }
                     }
-                }
-
-                items(state.bookmarks) {
-                    Text(text = it.name)
                 }
             }
 

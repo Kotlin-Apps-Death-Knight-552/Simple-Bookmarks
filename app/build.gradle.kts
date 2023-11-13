@@ -110,6 +110,9 @@ dependencies {
     //Image Loading Library
     implementation("io.coil-kt:coil-compose:2.5.0")
 
+    //JWT Library
+    implementation ("com.auth0.android:jwtdecode:2.0.2")
+
 }
 
 apollo {
