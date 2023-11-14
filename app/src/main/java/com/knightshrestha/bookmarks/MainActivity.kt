@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.knightshrestha.bookmarks.enums.UiState
+import com.knightshrestha.bookmarks.helpers.UiState
 import com.knightshrestha.bookmarks.ui.screen.LoadingScreen
 import com.knightshrestha.bookmarks.ui.screen.LoginScreen
 import com.knightshrestha.bookmarks.ui.screen.MainScreen
@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
-//            var metadata by remember { mutableStateOf(OpenGraphMetaData()) }
             val viewModel = hiltViewModel<MainViewModel>()
             val state by viewModel.state.collectAsState()
             BookmarksTheme {
@@ -41,33 +40,6 @@ class MainActivity : ComponentActivity() {
                     }
                 }
                 
-                
-//                LaunchedEffect(key1 = "") {
-//                    OpenGraphMetaDataProvider()
-//                        .startFetchingMetadataAsync(URL("https://mega.nz/folder/erJWXDwQ#E6z8vNIxMpmrd8NjlERndw"))
-//                        .let {
-//                            when (it.isSuccess) {
-//                                true -> {
-//                                    metadata = it.getOrNull()!!
-//                                }
-//                                false -> TODO()
-//                            }
-//                        }
-//                }
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    Column {
-//                        Text(text = metadata.title)
-//                        Text(text = "Description: ${metadata.description}")
-//                        Text(text = metadata.imageUrl)
-//                        AsyncImage(model = metadata.imageUrl, contentDescription = null)
-//                        Text(text = "Site: ${metadata.siteName}")
-//                    }
-//
-//
-//                }
             }
         }
     }

@@ -3,7 +3,7 @@ package com.knightshrestha.bookmarks.di
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient
 import com.knightshrestha.bookmarks.BuildConfig
-import com.knightshrestha.bookmarks.DATA_URL
+import com.knightshrestha.bookmarks.helpers.DATA_URL
 import com.knightshrestha.bookmarks.repository.DataStoreRepository
 import com.knightshrestha.bookmarks.services.ApolloAuthInterceptor
 import dagger.Module

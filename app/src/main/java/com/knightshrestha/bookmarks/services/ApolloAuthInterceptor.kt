@@ -2,7 +2,7 @@ package com.knightshrestha.bookmarks.services
 
 import android.util.Log
 import com.auth0.android.jwt.JWT
-import com.knightshrestha.bookmarks.AUTH_URL
+import com.knightshrestha.bookmarks.helpers.AUTH_URL
 import com.knightshrestha.bookmarks.BuildConfig
 import com.knightshrestha.bookmarks.models.Session
 import com.knightshrestha.bookmarks.repository.DataStoreRepository

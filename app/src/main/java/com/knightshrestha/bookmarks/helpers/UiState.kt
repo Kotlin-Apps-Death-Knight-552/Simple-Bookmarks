@@ -1,4 +1,4 @@
-package com.knightshrestha.bookmarks.enums
+package com.knightshrestha.bookmarks.helpers
 
 enum class UiState {
     LOADING,

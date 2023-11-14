@@ -6,8 +6,17 @@ mutation InsertBookmark($link: String, $name: String, $author_id: uuid) {
   }
 }
 
-subscription LiveBookmarkList {
-  bookmarks {
+subscription LiveBookmarkListOrderedByDate {
+  bookmarks(order_by: {time: desc_nulls_last}) {
+    id
+    link
+    name
+    time
+  }
+}
+
+subscription LiveBookmarkListOrderedByName {
+  bookmarks(order_by: {name: asc}) {
     id
     link
     name

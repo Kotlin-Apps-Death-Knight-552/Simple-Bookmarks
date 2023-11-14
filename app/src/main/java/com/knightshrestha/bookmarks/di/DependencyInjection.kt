@@ -1,7 +1,7 @@
 package com.knightshrestha.bookmarks.di
 
 import android.content.Context
-import com.knightshrestha.bookmarks.AUTH_URL
+import com.knightshrestha.bookmarks.helpers.AUTH_URL
 import com.knightshrestha.bookmarks.BuildConfig
 import com.knightshrestha.bookmarks.services.AuthApiService
 import dagger.Module

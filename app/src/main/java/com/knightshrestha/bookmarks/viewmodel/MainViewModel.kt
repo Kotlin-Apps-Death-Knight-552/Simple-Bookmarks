@@ -3,11 +3,10 @@ package com.knightshrestha.bookmarks.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.auth0.android.jwt.JWT
-import com.knightshrestha.bookmarks.enums.UiState
+import com.knightshrestha.bookmarks.helpers.UiState
 import com.knightshrestha.bookmarks.repository.AuthRepository
-import com.knightshrestha.bookmarks.repository.BookmarkRepository
 import com.knightshrestha.bookmarks.repository.DataStoreRepository
-import com.knightshrestha.bookmarks.state.BookmarkState
+import com.knightshrestha.bookmarks.state.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,25 +20,21 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val bookmarkRepository: BookmarkRepository,
     private val dataStoreRepository: DataStoreRepository
 
 ) : ViewModel() {
-    private val _token = dataStoreRepository.getAccessToken()
     private val _uiState = MutableStateFlow(UiState.LOADING)
-    private val _bookmarkState = MutableStateFlow(BookmarkState())
+    private val _authState = MutableStateFlow(AuthState())
 
     val state = combine(
         _uiState,
-        _bookmarkState,
-                _token
-    ) { uiState, bookmarkState, token ->
-        bookmarkState.copy(
+        _authState
+    ) { uiState, authState ->
+        authState.copy(
             uiState = uiState,
-            token = token
         )
 
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(2000), BookmarkState())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(2000), AuthState())
 
     fun logout() {
         viewModelScope.launch {
