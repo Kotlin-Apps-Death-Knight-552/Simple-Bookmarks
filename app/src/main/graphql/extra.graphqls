@@ -1,0 +1,1 @@
+extend type bookmarks @typePolicy(keyFields: "id")

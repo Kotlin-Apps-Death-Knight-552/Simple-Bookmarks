@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     id("com.apollographql.apollo3").version("3.8.2")
+    id("app.cash.sqldelight").version("2.0.0")
     id("com.google.devtools.ksp")
 }
 
@@ -85,8 +86,8 @@ dependencies {
     //Room Database
     val room_version = "2.6.0"
 
-    implementation ("androidx.room:room-runtime:$room_version")
-    implementation ("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
     annotationProcessor ("androidx.room:room-compiler:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-paging:$room_version")
@@ -95,14 +96,14 @@ dependencies {
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Apollo Graphql Client
     implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
 
     //Datastore
-    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     //Open Graph Parser
     implementation("com.github.lukasroberts:AndroidLinkView:1.0.1")
@@ -111,12 +112,24 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.5.0")
 
     //JWT Library
-    implementation ("com.auth0.android:jwtdecode:2.0.2")
+    implementation("com.auth0.android:jwtdecode:2.0.2")
+
+    //Caching Library
+    implementation("com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.8.2")
 
 }
 
 apollo {
     service("service") {
         packageName.set("com.knightshrestha.bookmarks.graphql")
+    }
+}
+
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.knightshrestha.bookmarks.sqldelight")
+        }
     }
 }

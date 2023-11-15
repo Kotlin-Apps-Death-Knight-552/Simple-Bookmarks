@@ -6,12 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.knightshrestha.bookmarks.helpers.UiState
-import com.knightshrestha.bookmarks.ui.screen.LoadingScreen
-import com.knightshrestha.bookmarks.ui.screen.LoginScreen
-import com.knightshrestha.bookmarks.ui.screen.MainScreen
+import com.knightshrestha.bookmarks.core.helpers.UiState
+import com.knightshrestha.bookmarks.loading.ui.screen.LoadingScreen
+import com.knightshrestha.bookmarks.authentication.ui.screen.LoginScreen
+import com.knightshrestha.bookmarks.mainscreen.ui.screen.MainScreen
 import com.knightshrestha.bookmarks.ui.theme.BookmarksTheme
-import com.knightshrestha.bookmarks.viewmodel.MainViewModel
+import com.knightshrestha.bookmarks.authentication.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
