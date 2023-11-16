@@ -2,8 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
-    id("com.apollographql.apollo3").version("3.8.2")
-    id("app.cash.sqldelight").version("2.0.0")
+    id("com.apollographql.apollo3").version("4.0.0-beta.2")
     id("com.google.devtools.ksp")
 }
 
@@ -100,10 +99,13 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Apollo Graphql Client
-    implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
+    implementation("com.apollographql.apollo3:apollo-runtime")
 
     //Datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //JWT Library
+    implementation("com.auth0.android:jwtdecode:2.0.2")
 
     //Open Graph Parser
     implementation("com.github.lukasroberts:AndroidLinkView:1.0.1")
@@ -111,25 +113,13 @@ dependencies {
     //Image Loading Library
     implementation("io.coil-kt:coil-compose:2.5.0")
 
-    //JWT Library
-    implementation("com.auth0.android:jwtdecode:2.0.2")
 
-    //Caching Library
-    implementation("com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.8.2")
+
 
 }
 
 apollo {
     service("service") {
         packageName.set("com.knightshrestha.bookmarks.graphql")
-    }
-}
-
-
-sqldelight {
-    databases {
-        create("Database") {
-            packageName.set("com.knightshrestha.bookmarks.sqldelight")
-        }
     }
 }

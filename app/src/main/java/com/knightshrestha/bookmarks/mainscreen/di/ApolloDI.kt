@@ -1,10 +1,6 @@
-package com.knightshrestha.bookmarks.mainscreen
+package com.knightshrestha.bookmarks.mainscreen.di
 
 import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.cache.normalized.FetchPolicy
-import com.apollographql.apollo3.cache.normalized.fetchPolicy
-import com.apollographql.apollo3.cache.normalized.normalizedCache
-import com.apollographql.apollo3.cache.normalized.sql.SqlNormalizedCacheFactory
 import com.apollographql.apollo3.network.okHttpClient
 import com.knightshrestha.bookmarks.BuildConfig
 import com.knightshrestha.bookmarks.authentication.services.ApolloAuthInterceptor
@@ -48,15 +44,12 @@ object ApolloDI {
     @Singleton
     @Provides
     fun provideApolloClient(okHttpClient: OkHttpClient): ApolloClient {
-        val sqlNormalizedCacheFactory = SqlNormalizedCacheFactory(name = "apollo.db")
-        return ApolloClient.Builder()
+        return ApolloClient.Builder().useV3ExceptionHandling(true)
             .serverUrl(DATA_URL)
             .webSocketReopenWhen { throwable, attempt ->
                 kotlinx.coroutines.delay(2.0.pow(attempt.toDouble()).toLong())
                 true
             }
-            .normalizedCache(sqlNormalizedCacheFactory)
-            .fetchPolicy(FetchPolicy.NetworkFirst)
             .okHttpClient(okHttpClient)
             .build()
     }

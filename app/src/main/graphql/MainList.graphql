@@ -1,22 +1,14 @@
 mutation InsertBookmark($link: String, $name: String, $author_id: uuid) {
-  insert_bookmarks(objects: {name: $name, link: $link, author_id: $author_id}) {
-    returning {
+  insert_bookmarks_one(object: {name: $name, link: $link, author_id: $author_id}) {
       id
-    }
+      name
+      link
+      time
   }
 }
 
-subscription LiveBookmarkListOrderedByDate {
+subscription LiveBookmarkList {
   bookmarks(order_by: {time: desc_nulls_last}) {
-    id
-    link
-    name
-    time
-  }
-}
-
-subscription LiveBookmarkListOrderedByName {
-  bookmarks(order_by: {name: asc}) {
     id
     link
     name

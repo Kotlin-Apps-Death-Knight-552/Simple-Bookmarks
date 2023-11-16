@@ -1,13 +1,11 @@
 package com.knightshrestha.bookmarks.authentication
 
-import android.content.Context
-import com.knightshrestha.bookmarks.core.helpers.AUTH_URL
 import com.knightshrestha.bookmarks.BuildConfig
 import com.knightshrestha.bookmarks.authentication.services.AuthApiService
+import com.knightshrestha.bookmarks.core.helpers.AUTH_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -43,10 +41,7 @@ object DependencyInjection {
         )
     }
 
-    @Provides
-    fun provideContext(@ApplicationContext a: Context): Context {
-        return a
-    }
+
 
 
 }
