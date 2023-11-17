@@ -64,6 +64,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended-android")
     implementation("androidx.compose.runtime:runtime-livedata")
     implementation("androidx.navigation:navigation-compose:2.7.5")
     testImplementation("junit:junit:4.13.2")
@@ -121,5 +122,10 @@ dependencies {
 apollo {
     service("service") {
         packageName.set("com.knightshrestha.bookmarks.graphql")
+        introspection {
+            endpointUrl.set("https://zkyeoneszjqjueqqglqq.hasura.ap-south-1.nhost.run/v1/graphql")
+            headers.put("x-hasura-admin-secret", "B5!G-9Q_:Qv#UJ+'h*mOj@pj8d,!*ohK")
+            schemaFile.set(file("src/main/graphql/schema.graphqls"))
+        }
     }
 }

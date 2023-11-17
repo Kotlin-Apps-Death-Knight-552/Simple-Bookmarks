@@ -13,8 +13,7 @@ data class BookmarkState(
     val bookmarks: List<GroupedBookmarks> = emptyList(),
     val name: String = "",
     val link: String = "",
-    val isUpserting: Boolean = false,
-    val isDeleting: Boolean = false,
+    val isInserting: Boolean = false,
     val sortedBy: SortType = SortType.TIME,
     val snackMessage: String = ""
 )

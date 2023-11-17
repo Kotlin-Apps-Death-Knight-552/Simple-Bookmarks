@@ -1,2 +1,8 @@
 schema: schema.graphqls
 documents: '**/*.graphql'
+extensions:
+  endpoints:
+    default:
+      url: "https://zkyeoneszjqjueqqglqq.hasura.ap-south-1.nhost.run/v1/graphql"
+      headers:
+        x-hasura-admin-secret: "B5!G-9Q_:Qv#UJ+'h*mOj@pj8d,!*ohK"

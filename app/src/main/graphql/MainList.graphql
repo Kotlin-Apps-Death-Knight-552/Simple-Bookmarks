@@ -28,5 +28,11 @@ mutation DeleteBookmark($id: uuid!) {
   }
 }
 
-
-
+query BookmarkList {
+    bookmarks(order_by: {time: desc_nulls_last}) {
+        id
+        link
+        name
+        time
+    }
+}
