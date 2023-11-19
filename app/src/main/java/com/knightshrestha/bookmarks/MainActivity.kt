@@ -20,16 +20,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    lateinit var bookmarkViewModel: BookmarkViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        handleIntent(intent = intent)
+//        handleIntent(intent = intent)
 
 
         setContent {
             val viewModel = hiltViewModel<MainViewModel>()
-            bookmarkViewModel = hiltViewModel()
             val state by viewModel.state.collectAsState()
             BookmarksTheme {
                 // A surface container using the 'background' color from the theme
@@ -50,28 +48,28 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun handleIntent(intent: Intent) {
-        val receivedAction = intent.action
-        val receivedType = intent.type
+//    private fun handleIntent(intent: Intent) {
+//        val receivedAction = intent.action
+//        val receivedType = intent.type
+//
+//        if (receivedAction == Intent.ACTION_SEND && receivedType != null) {
+//            if (receivedType == "text/plain") {
+//                val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+//
+//                if (sharedText != null) {
+//                    val onEvent = bookmarkViewModel::onBookmarkEvent
+//                    onEvent(BookmarkEvent.SetLink(sharedText))
+//                    onEvent(BookmarkEvent.ToggleSaveBookmark)
+//                }
+//            }
+//        }
+//
+//    }
 
-        if (receivedAction == Intent.ACTION_SEND && receivedType != null) {
-            if (receivedType == "text/plain") {
-                val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-
-                if (sharedText != null) {
-                    val onEvent = bookmarkViewModel::onBookmarkEvent
-                    onEvent(BookmarkEvent.SetLink(sharedText))
-                    onEvent(BookmarkEvent.ToggleSaveBookmark)
-                }
-            }
-        }
-
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        if (intent != null) {
-            handleIntent(intent = intent)
-        }
-    }
+//    override fun onNewIntent(intent: Intent?) {
+//        super.onNewIntent(intent)
+//        if (intent != null) {
+//            handleIntent(intent = intent)
+//        }
+//    }
 }

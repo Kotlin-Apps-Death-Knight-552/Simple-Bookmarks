@@ -21,6 +21,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        applicationIdSuffix = ".debug"
     }
 
     buildTypes {
@@ -64,7 +65,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended-android")
+//    implementation("androidx.compose.material:material-icons-extended-android")
     implementation("androidx.compose.runtime:runtime-livedata")
     implementation("androidx.navigation:navigation-compose:2.7.5")
     testImplementation("junit:junit:4.13.2")
@@ -84,13 +85,13 @@ dependencies {
 
 
     //Room Database
-    val room_version = "2.6.0"
-
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    annotationProcessor ("androidx.room:room-compiler:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-paging:$room_version")
+//    val room_version = "2.6.0"
+//
+//    implementation("androidx.room:room-runtime:$room_version")
+//    implementation("androidx.room:room-ktx:$room_version")
+//    annotationProcessor ("androidx.room:room-compiler:$room_version")
+//    ksp("androidx.room:room-compiler:$room_version")
+//    implementation("androidx.room:room-paging:$room_version")
 
     //Retrofit and Online Stuff
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
@@ -109,10 +110,10 @@ dependencies {
     implementation("com.auth0.android:jwtdecode:2.0.2")
 
     //Open Graph Parser
-    implementation("com.github.lukasroberts:AndroidLinkView:1.0.1")
+//    implementation("com.github.lukasroberts:AndroidLinkView:1.0.1")
 
     //Image Loading Library
-    implementation("io.coil-kt:coil-compose:2.5.0")
+//    implementation("io.coil-kt:coil-compose:2.5.0")
 
 
 

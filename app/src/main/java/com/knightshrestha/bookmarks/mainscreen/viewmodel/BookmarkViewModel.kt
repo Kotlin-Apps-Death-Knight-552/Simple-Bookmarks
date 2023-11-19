@@ -7,7 +7,6 @@ import com.knightshrestha.bookmarks.core.helpers.parseDate
 import com.knightshrestha.bookmarks.core.repository.DataStoreRepository
 import com.knightshrestha.bookmarks.mainscreen.events.BookmarkEvent
 import com.knightshrestha.bookmarks.mainscreen.repository.ApolloRepository
-import com.knightshrestha.bookmarks.mainscreen.repository.RoomRepository
 import com.knightshrestha.bookmarks.mainscreen.state.BookmarkState
 import com.knightshrestha.bookmarks.mainscreen.state.GroupedBookmarks
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,9 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
     private val remoteRepository: ApolloRepository,
-    private val localRepository: RoomRepository,
     private val dataStoreRepository: DataStoreRepository
-
 ) : ViewModel() {
     private val _bookmarkState = MutableStateFlow(BookmarkState())
     private val _sortType = MutableStateFlow(SortType.NAME)
@@ -139,10 +136,7 @@ class BookmarkViewModel @Inject constructor(
             }
             is BookmarkEvent.SortBookmarks -> {
                 _sortType.update {
-                    when (it) {
-                        SortType.NAME -> SortType.TIME
-                        SortType.TIME -> SortType.NAME
-                    }
+                    event.sortBy
                 }
             }
             BookmarkEvent.ToggleSaveBookmark -> {

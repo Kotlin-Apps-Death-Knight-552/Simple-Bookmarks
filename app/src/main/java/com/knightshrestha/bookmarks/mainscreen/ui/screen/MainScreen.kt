@@ -12,20 +12,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.TextFormat
-import androidx.compose.material.icons.twotone.AccessTime
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -38,10 +31,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.knightshrestha.bookmarks.core.helpers.SortType
 import com.knightshrestha.bookmarks.mainscreen.events.BookmarkEvent
 import com.knightshrestha.bookmarks.mainscreen.ui.components.AddBookmarkDialog
 import com.knightshrestha.bookmarks.mainscreen.ui.components.ListItem
+import com.knightshrestha.bookmarks.mainscreen.ui.components.MainAppBar
 import com.knightshrestha.bookmarks.mainscreen.ui.components.StickyHeader
 import com.knightshrestha.bookmarks.mainscreen.viewmodel.BookmarkViewModel
 
@@ -80,24 +73,7 @@ fun MainScreen() {
             }
         },
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Bookmark List"
-                    )
-                }, colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
-                ), actions = {
-                    IconButton(onClick = { onEvent(BookmarkEvent.SortBookmarks(SortType.NAME)) }) {
-                        when (state.sortedBy) {
-                            SortType.NAME -> Icon(imageVector = Icons.TwoTone.AccessTime, contentDescription = null)
-                            SortType.TIME -> Icon(imageVector = Icons.Default.TextFormat, contentDescription = null)
-                        }
-                    }
-                }
-            )
+            MainAppBar(onEvent = onEvent, state = state)
         }
 
     ) { paddingValues ->
