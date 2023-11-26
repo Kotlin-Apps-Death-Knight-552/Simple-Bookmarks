@@ -97,7 +97,7 @@ fun MainScreen(logOut: () -> Unit) {
             ) {
                 state.bookmarks.forEach {
                     stickyHeader {
-                        StickyHeader(label = it.label)
+                        StickyHeader(label = "${it.label}: ${it.items.size} items" )
                     }
                     items(it.items) { bookmark ->
                         ListItem(
