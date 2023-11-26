@@ -85,9 +85,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
       - name: Download APK from build
         uses: actions/download-artifact@v1
         with:
@@ -102,4 +99,4 @@ jobs:
         with:
           draft: true
           prerelease: false
-          files: Simple-Bookmarks/Bookmarks.apk
+          files: Bookmarks/Bookmarks.apk
