@@ -97,7 +97,7 @@ jobs:
         files: Simple-Bookmarks/Bookmarks.apk
     
     - name: Create Release2
-      id: create_release
+      id: create_release2
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -111,7 +111,7 @@ jobs:
         files: Simple-Bookmarks/Bookmarks
 
     - name: Create Release3
-      id: create_release
+      id: create_release3
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
