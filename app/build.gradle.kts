@@ -14,17 +14,18 @@ android {
         applicationId = "com.knightshrestha.bookmarks"
         minSdk = 31
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
-        applicationIdSuffix = ".debug"
+
     }
 
     buildTypes {
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -115,8 +116,8 @@ dependencies {
     //Image Loading Library
 //    implementation("io.coil-kt:coil-compose:2.5.0")
 
-
-
+    //App updating Library
+    implementation("com.github.supersu-man:apkupdater-library:v2.0.0")
 
 }
 

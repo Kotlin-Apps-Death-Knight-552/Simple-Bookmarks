@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.knightshrestha.bookmarks.core.helpers.SortType
 import com.knightshrestha.bookmarks.core.helpers.parseDate
+import com.knightshrestha.bookmarks.core.helpers.parseTimeInEpoch
 import com.knightshrestha.bookmarks.core.repository.DataStoreRepository
 import com.knightshrestha.bookmarks.mainscreen.events.BookmarkEvent
 import com.knightshrestha.bookmarks.mainscreen.repository.ApolloRepository
@@ -33,7 +34,9 @@ class BookmarkViewModel @Inject constructor(
         .flatMapLatest { sortType ->
             when (sortType) {
                 SortType.NAME -> remoteRepository.getBookmarks().map { bookmarkList ->
-                    bookmarkList.groupBy { it.name.first() }
+                    bookmarkList
+                        .sortedBy { it.name }
+                        .groupBy { it.name.first() }
                         .toSortedMap()
                         .map {
                             GroupedBookmarks(
@@ -44,8 +47,10 @@ class BookmarkViewModel @Inject constructor(
                 }
 
                 SortType.TIME -> remoteRepository.getBookmarks().map { bookmarkList ->
-                    bookmarkList.groupBy { parseDate(it.time) }
-                        .toSortedMap(Comparator.reverseOrder())
+                    bookmarkList
+                        .sortedByDescending { parseTimeInEpoch(it.time) }
+                        .groupBy { parseDate(it.time) }
+                        .toSortedMap()
                         .map {
                             GroupedBookmarks(
                                 label = it.key.toString(),

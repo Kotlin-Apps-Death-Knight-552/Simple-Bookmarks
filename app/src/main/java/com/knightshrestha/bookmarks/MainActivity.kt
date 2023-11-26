@@ -16,6 +16,11 @@ import com.knightshrestha.bookmarks.mainscreen.ui.screen.MainScreen
 import com.knightshrestha.bookmarks.mainscreen.viewmodel.BookmarkViewModel
 import com.knightshrestha.bookmarks.ui.theme.BookmarksTheme
 import dagger.hilt.android.AndroidEntryPoint
+import com.supersuman.apkupdater.ApkUpdater
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.concurrent.thread
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -24,6 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
 //        handleIntent(intent = intent)
+        checkForUpdates()
 
 
         setContent {
@@ -44,6 +50,25 @@ class MainActivity : ComponentActivity() {
                     }
                 }
                 
+            }
+        }
+    }
+
+    private fun checkForUpdates() = CoroutineScope(Dispatchers.IO).launch {
+        val url = "https://github.com/Kotlin-Apps-Death-Knight-552/Simple-Bookmarks/releases/latest"
+        val updater = ApkUpdater(this@MainActivity, url)
+        
+        updater.threeNumbers = false
+        if (updater.isInternetConnection()) {
+            updater.init()
+            updater.isNewUpdateAvailable {
+                if (updater.hasPermissionsGranted()) {
+                    updater.requestDownload()
+                } else {
+                    updater.requestMyPermissions {
+                        updater.requestDownload()
+                    }
+                }
             }
         }
     }

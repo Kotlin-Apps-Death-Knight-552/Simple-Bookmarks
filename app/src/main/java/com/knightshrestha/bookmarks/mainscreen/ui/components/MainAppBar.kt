@@ -35,7 +35,7 @@ fun MainAppBar(onEvent: (BookmarkEvent) -> Unit, state: BookmarkState, logOut: (
     TopAppBar(
         title = {
             Text(
-                text = "Bookmark List"
+                text = "Bookmark List "
             )
         }, colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
