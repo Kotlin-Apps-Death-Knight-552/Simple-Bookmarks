@@ -99,7 +99,7 @@ class BookmarkViewModel @Inject constructor(
             }
             BookmarkEvent.InsertBookmark -> {
                 val name = state.value.name
-                val link = state.value.name
+                val link = state.value.link
                 if (name.isBlank() || link.isBlank()) return
                 viewModelScope.launch {
                     val response = remoteRepository.insertBookmark(
@@ -173,5 +173,7 @@ class BookmarkViewModel @Inject constructor(
             }
         }
     }
+
+
 
 }

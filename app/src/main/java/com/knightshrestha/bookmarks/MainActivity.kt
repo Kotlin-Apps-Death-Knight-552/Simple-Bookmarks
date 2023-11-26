@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         LoadingScreen(viewModel)
                     }
                     UiState.LOGGED_IN -> {
-                        MainScreen()
+                        MainScreen(logOut = { viewModel.logout() })
                     }
                     UiState.LOGGED_OUT -> {
                         LoginScreen(viewModel)

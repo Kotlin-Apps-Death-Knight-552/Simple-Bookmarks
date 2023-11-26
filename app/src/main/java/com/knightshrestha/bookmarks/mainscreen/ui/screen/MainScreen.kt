@@ -40,7 +40,7 @@ import com.knightshrestha.bookmarks.mainscreen.viewmodel.BookmarkViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(logOut: () -> Unit) {
 
 
     val viewModel = hiltViewModel<BookmarkViewModel>()
@@ -73,7 +73,7 @@ fun MainScreen() {
             }
         },
         topBar = {
-            MainAppBar(onEvent = onEvent, state = state)
+            MainAppBar(onEvent = onEvent, state = state, logOut = logOut)
         }
 
     ) { paddingValues ->

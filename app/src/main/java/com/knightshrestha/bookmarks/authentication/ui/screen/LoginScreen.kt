@@ -42,9 +42,9 @@ fun LoginScreen(viewModel: MainViewModel) {
             ) },
                 enabled = !isLoading) {
                 if (isLoading) {
-                    Text(text = "Apple")
+                    Text(text = "Please Wait")
                 } else {
-                    Text(text = "Ball")
+                    Text(text = "Login")
                 }
 
             }
