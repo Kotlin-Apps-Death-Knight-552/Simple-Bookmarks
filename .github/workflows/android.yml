@@ -11,6 +11,11 @@ on:
         required: true
         default: "1.0"
 
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
 jobs:
   build:
 
@@ -85,8 +90,36 @@ jobs:
         GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
 
       with:
-        tag_name: v${{ github.event.inputs.version }}
+        # tag_name: v${{ github.event.inputs.version }}
         name: Release - ${{ steps.date.outputs.time }}
         draft: true
         prerelease: false
         files: Simple-Bookmarks/Bookmarks.apk
+    
+    - name: Create Release2
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
+
+      with:
+        # tag_name: v${{ github.event.inputs.version }}
+        name: Release - ${{ steps.date.outputs.time }}
+        draft: true
+        prerelease: false
+        files: Simple-Bookmarks/Bookmarks
+
+    - name: Create Release3
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
+
+      with:
+        # tag_name: v${{ github.event.inputs.version }}
+        name: Release - ${{ steps.date.outputs.time }}
+        draft: true
+        prerelease: false
+        files: Simple-Bookmarks/Simple-Bookmarks/Bookmarks.apk
