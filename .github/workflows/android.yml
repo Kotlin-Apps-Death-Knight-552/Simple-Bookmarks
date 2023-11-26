@@ -77,49 +77,29 @@ jobs:
         name: Bookmarks
         path: app/Bookmarks.apk
 
-    - name: Download APK from build
-      uses: actions/download-artifact@v1
-      with:
-        name: Bookmarks
+  release:
+    name: Release APK
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
 
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Download APK from build
+        uses: actions/download-artifact@v1
+        with:
+          name: Bookmarks
 
-      with:
-        # tag_name: v${{ github.event.inputs.version }}
-        name: Release - ${{ steps.date.outputs.time }}
-        draft: true
-        prerelease: false
-        files: Simple-Bookmarks/Bookmarks.apk
-    
-    - name: Create Release2
-      id: create_release2
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
-
-      with:
-        # tag_name: v${{ github.event.inputs.version }}
-        name: Release - ${{ steps.date.outputs.time }}
-        draft: true
-        prerelease: false
-        files: Simple-Bookmarks/Bookmarks
-
-    - name: Create Release3
-      id: create_release3
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
-
-      with:
-        # tag_name: v${{ github.event.inputs.version }}
-        name: Release - ${{ steps.date.outputs.time }}
-        draft: true
-        prerelease: false
-        files: Simple-Bookmarks/Simple-Bookmarks/Bookmarks.apk
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
+        with:
+          draft: true
+          prerelease: false
+          files: Simple-Bookmarks/Bookmarks.apk
