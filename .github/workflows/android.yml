@@ -5,10 +5,11 @@ permissions:
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    inputs:
+      version:
+        description: "Application version"
+        required: true
+        default: "1.0"
 
 jobs:
   build:
@@ -76,19 +77,16 @@ jobs:
       with:
         name: Bookmarks
 
-   
-
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        GITHUB_REPOSITORY: Death-Knight-552/bookmark_attempt_6
-
+        GITHUB_REPOSITORY: Kotlin-Apps-Death-Knight-552/Simple-Bookmarks
 
       with:
-        tag_name: "Release"
+        tag_name: v${{ github.event.inputs.version }}
         name: Release - ${{ steps.date.outputs.time }}
-        draft: false
+        draft: true
         prerelease: false
-        files: bookmark_attempt_6/Bookmarks.apk
+        files: Simple-Bookmarks/Bookmarks.apk
